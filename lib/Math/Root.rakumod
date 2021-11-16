@@ -187,7 +187,7 @@ fifth root, 117 for a one hundred seventeenth root, whatever.
 
 =begin code
 
-say root 3, 5; # cube root of 3
+say root 3, 3; # cube root of 3
 # 1.44224957030740838232163831078011
 
 say root 17, 13; # thirteenth root of 17

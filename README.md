@@ -112,7 +112,7 @@ Note that `root()` **always** returns a FatRat. If that will be problematic, coe
 
 `$n` can be any integer > 1. The examples so far have all used either an explicit or default of 2, but you can pass in 3 for a cube root, 5 for a fifth root, 117 for a one hundred seventeenth root, whatever.
 
-    say root 3, 5; # cube root of 3
+    say root 3, 3; # cube root of 3
     # 1.44224957030740838232163831078011
 
     say root 17, 13; # thirteenth root of 17
