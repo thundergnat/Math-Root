@@ -1,0 +1,16 @@
+{
+    "perl"          : "6",
+    "name"          : "Math::Root",
+    "version"       : "0.0.1",
+    "description"   : "Efficient, high accracy root calculations ",
+    "authors"       : [ "Steve Schulze (thundergnat)" ],
+    "provides"      : { "Math::Root" : "lib/Math/Root.rakumod" },
+    "depends"       : [ ],
+    "build-depends" : [ ],
+    "test-depends"  : [ ],
+    "license"       : "Artistic-2.0",
+    "resources"     : [ ],
+    "source-type"   : "git",
+    "source-url"    : "git://github.com/thundergnat/Math-Root.git",
+    "tags"          : [ "root", "square root", "integer root", "cube root", "iroot" ]
+}
