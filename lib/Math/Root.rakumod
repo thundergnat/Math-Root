@@ -20,14 +20,25 @@ sub newton (
 }
 
 
-# Integer root of an Integer
-sub iroot (
-    Int $integer,
+# Integer root
+
+# use the built-in where possible, it's _much_ faster
+multi iroot (
+    Int() $integer where * < 1e12,
     Int $n  where * ≥ 2 = 2,
     --> Int
   ) is export
 {
-    newton( $integer * exp(3 * $n, 10), $n ).round(10) div 1000
+    ($integer ** (1/$n)).Int
+}
+
+multi iroot (
+    Int() $integer where * >= 1e12,
+    Int $n  where * ≥ 2 = 2,
+    --> Int
+  ) is export
+{
+    newton( $integer * exp(4 * $n, 10), $n ).round(10) div 10000
 }
 
 
