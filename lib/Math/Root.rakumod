@@ -1,16 +1,15 @@
-unit module Math::Root:ver<0.0.1>:auth<github:thundergnat>;
+unit module Math::Root:ver<0.0.2>:auth<github:thundergnat>;
 
 # Precision dynamic variable. Number of digits to the right of the decimal
 # point. Set if you want a different default than 32.
 our $*ROOT-PRECISION is export;
 
-
-# Integer root of an Integer
-sub iroot (
-    Int $integer,
+# Internal Newton method root approximation
+sub newton (
+    Int $integer is copy,
     Int $n where * ≥ 2 = 2
     --> Int
-    ) is export
+    )
 {
     my $boundary = $n - 1;
     min (
@@ -18,6 +17,17 @@ sub iroot (
         { ( $boundary * $_ + $integer div exp($boundary, $_) ) div $n } …
         { exp($n, $_) ≤ $integer and exp($n, $_ + 1) > $integer }
     ).tail(2)
+}
+
+
+# Integer root of an Integer
+sub iroot (
+    Int $integer,
+    Int $n  where * ≥ 2 = 2,
+    --> Int
+  ) is export
+{
+    newton( $integer * exp(3 * $n, 10), $n ).round(10) div 1000
 }
 
 
@@ -29,7 +39,7 @@ multi root (
     --> FatRat
   ) is export
 {
-    FatRat.new: iroot( $integer * exp((1 + $precision) * $n, 10), $n ).round(10), exp(1 + $precision, 10)
+    FatRat.new: newton( $integer * exp((1 + $precision) * $n, 10), $n ).round(10), exp(1 + $precision, 10)
 }
 
 
@@ -41,7 +51,7 @@ multi root (
     --> FatRat
     ) is export
 {
-    FatRat.new: iroot( $rat.numerator * exp((1 + $precision) * $n, 10) div $rat.denominator, $n ).round(10), exp(1 + $precision, 10)
+    FatRat.new: newton( $rat.numerator * exp((1 + $precision) * $n, 10) div $rat.denominator, $n ).round(10), exp(1 + $precision, 10)
 }
 
 
