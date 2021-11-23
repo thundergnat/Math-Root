@@ -2,7 +2,7 @@
     "perl"          : "6",
     "name"          : "Math::Root",
     "version"       : "0.0.2",
-    "description"   : "Efficient, high accracy root calculations ",
+    "description"   : "Efficient, high accuracy root calculations ",
     "authors"       : [ "Steve Schulze (thundergnat)" ],
     "provides"      : { "Math::Root" : "lib/Math/Root.rakumod" },
     "depends"       : [ ],
