@@ -1,0 +1,8 @@
+Revision history for Math-Root
+
+{{$NEXT}}
+    - Migrate to fez ecosystem
+
+0.0.2 - Fix rounding error in Integer root routine
+
+0.0.1 - Initial version

@@ -1,4 +1,4 @@
-unit module Math::Root:ver<0.0.2>:auth<github:thundergnat>;
+unit module Math::Root:ver<0.0.3>:auth<zef:thundergnat>;
 
 # Precision dynamic variable. Number of digits to the right of the decimal
 # point. Set if you want a different default than 32.
@@ -75,34 +75,34 @@ High accuracy and efficient nth root routines.
 
 =head1 SYNOPSIS
 
-=begin code
+=begin code :lang<raku>
 
-    use Math::Root;
+use Math::Root;
 
-    # Integer root of an integer, returns an Integer. (possibly not exact.)
-    # Defaults to square root.
+# Integer root of an integer, returns an Integer. (possibly not exact.)
+# Defaults to square root.
 
-    say iroot 2**541;     # integer square root
-    # 2682957709556584533771917772160356460380403547217698392041778498789597340712478078
+say iroot 2**541;     # integer square root
+# 2682957709556584533771917772160356460380403547217698392041778498789597340712478078
 
-    say iroot 2**541, 3; # integer cube root
-    # 1930823390806962193386557101263626480502272594990424863
+say iroot 2**541, 3; # integer cube root
+# 1930823390806962193386557101263626480502272594990424863
 
-    say iroot 2**341, 7; # integer seventh root
-    # 184212135128821202763601
+say iroot 2**341, 7; # integer seventh root
+# 184212135128821202763601
 
 
-    # Rational root of Real number, returns a FatRat. Defaults to square root
-    # with 32 digits past the decimal point.
+# Rational root of Real number, returns a FatRat. Defaults to square root
+# with 32 digits past the decimal point.
 
-    say root 2**541;     # square root
-    # 2682957709556584533771917772160356460380403547217698392041778498789597340712478078.25589164260725933347013112601008
+say root 2**541;     # square root
+# 2682957709556584533771917772160356460380403547217698392041778498789597340712478078.25589164260725933347013112601008
 
-    say root 2**541, 3; # cube root
-    # 1930823390806962193386557101263626480502272594990424863.73446798343158184700655776636161
+say root 2**541, 3; # cube root
+# 1930823390806962193386557101263626480502272594990424863.73446798343158184700655776636161
 
-    say (2**541).&root(7); # seventh root
-    # 184212135128821202763601.0882008101068149236473074788038
+say (2**541).&root(7); # seventh root
+# 184212135128821202763601.0882008101068149236473074788038
 
 
 =end code
@@ -150,7 +150,7 @@ root functions for both Integer and Rational results.
 
 Contrast the default Raku operations:
 
-=begin code
+=begin code :lang<raku>
 
 say sqrt 2**541;       # 2.6829577095565847e+81
 
@@ -158,9 +158,9 @@ say (2**541) ** (1/2); # 2.6829577095565847e+81
 
 =end code
 
-with the Math::Root operations:
+with the C<Math::Root> operations:
 
-=begin code
+=begin code :lang<raku>
 
 say iroot 2**541;
 # 2682957709556584533771917772160356460380403547217698392041778498789597340712478078
@@ -179,7 +179,7 @@ precision, you may pass in a precision value when you call it, or can adjust the
 default precision by setting the C<$*ROOT-PRECISION> dynamic variable to some
 positive integer value.
 
-=begin code
+=begin code :lang<raku>
 
 say sqrt 2; # Default Raku square root
 # 1.4142135623730951
@@ -206,7 +206,7 @@ C<$n> can be any integer > 1. The examples so far have all used either
 an explicit or default of 2, but you can pass in 3 for a cube root, 5 for a
 fifth root, 117 for a one hundred seventeenth root, whatever.
 
-=begin code
+=begin code :lang<raku>
 
 say root 3, 3; # cube root of 3
 # 1.44224957030740838232163831078011
@@ -220,7 +220,7 @@ No matter how the precision is set, or what it is set to, the last digit will be
 rounded correctly. However, also note that non-significant digits (trailing
 zeros) may be dropped.
 
-=begin code
+=begin code :lang<raku>
 
 say root 25;           # 5 <-- still a FatRat!
 say root 25.0;         # 5 <-- still a FatRat!
