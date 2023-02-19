@@ -95,27 +95,19 @@ Also provides named routines for 3-simplex and 4-simplex roots if you want to ca
 
 A number whose tetrahedral root is an integer is a tetrahedral number.
 
-### sub tetrahedral-root( Real $number, Int 3 --> FatRat )
+### sub tetrahedral-root( Real $number --> FatRat )
 
   * $number
 
     * value; any Real number, required.
-
-  * $r
-
-    * value; Integer 3, (3-simplex root).
 
 A number whose pentatopic root is an integer is a pentatopic number. ( long o: pentatōpic - like hope or nope. )
 
-### sub pentatopic-root( Real $number, Int 4 --> FatRat )
+### sub pentatopic-root( Real $number --> FatRat )
 
   * $number
 
     * value; any Real number, required.
-
-  * $r
-
-    * value; Integer 4, (4-simplex root).
 
 USAGE
 =====

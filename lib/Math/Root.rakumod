@@ -185,25 +185,20 @@ call them directly.
 
 A number whose tetrahedral root is an integer is a tetrahedral number.
 
-=head3 sub tetrahedral-root( Real $number, Int 3 --> FatRat )
+=head3 sub tetrahedral-root( Real $number --> FatRat )
 
 =item1 $number
 =item2 value; any Real number, required.
-
-=item1 $r
-=item2 value; Integer 3, (3-simplex root).
 
 
 A number whose pentatopic root is an integer is a pentatopic number.
 ( long o: pentatōpic - like hope or nope. )
 
-=head3 sub pentatopic-root( Real $number, Int 4 --> FatRat )
+=head3 sub pentatopic-root( Real $number --> FatRat )
 
 =item1 $number
 =item2 value; any Real number, required.
 
-=item1 $r
-=item2 value; Integer 4, (4-simplex root).
 
 =head1 USAGE
 
