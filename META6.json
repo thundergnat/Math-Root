@@ -22,9 +22,11 @@
     "square root",
     "integer root",
     "cube root",
-    "iroot"
+    "iroot",
+    "triangular-root",
+    "tetrahedral-root"
   ],
   "test-depends": [
   ],
-  "version": "0.0.3"
+  "version": "0.0.4"
 }

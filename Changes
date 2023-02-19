@@ -1,6 +1,8 @@
 Revision history for Math-Root
 
 {{$NEXT}}
+    - Add trigular root routines.
+    - Test triangular root routines.
 
 0.0.3  2022-12-26T16:25:09-05:00
     - Migrate to fez ecosystem

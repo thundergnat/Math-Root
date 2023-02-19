@@ -1,4 +1,4 @@
-unit module Math::Root:ver<0.0.3>:auth<zef:thundergnat>;
+unit module Math::Root:ver<0.0.4>:auth<zef:thundergnat>;
 
 # Precision dynamic variable. Number of digits to the right of the decimal
 # point. Set if you want a different default than 32.
@@ -65,13 +65,31 @@ multi root (
     FatRat.new: newton( $rat.numerator * exp((1 + $precision) * $n, 10) div $rat.denominator, $n ).round(10), exp(1 + $precision, 10)
 }
 
+multi triangular-root (Real $x) is export { ((8 × $x + 1).&root - 1) / 2 }
+
+multi triangular-root (Real $x, 2) is export { ((8 × $x + 1).&root - 1) / 2 }
+
+multi triangular-root (Real $x, 3) is export { tetrahedral-root $x }
+
+multi triangular-root (Real $x, 4) is export { pentatopic-root $x }
+
+multi triangular-root (Real $x, Int $r) is export { fail("Sorry, unable to calculate {$r}-simplex root") }
+
+sub tetrahedral-root (Real $x) is export {
+    (3 × $x + (9 × $x² - 1/27).&root).&root(3) +
+    (3 × $x - (9 × $x² - 1/27).&root).&root(3) - 1
+}
+
+sub pentatopic-root ($x) is export { ((5 + 4 × (24 × $x + 1).&root).&root - 3) / 2 }
+
+
 
 
 =begin pod
 =head1 NAME
 Math::Root
 
-High accuracy and efficient nth root routines.
+High accuracy and fairly efficient nth root routines.
 
 =head1 SYNOPSIS
 
@@ -103,6 +121,11 @@ say root 2**541, 3; # cube root
 
 say (2**541).&root(7); # seventh root
 # 184212135128821202763601.0882008101068149236473074788038
+
+
+# Also can calculate 2nd, 3rd and 4th triangular roots
+say 7140.&triangular-root;
+# 119
 
 
 =end code
@@ -142,9 +165,49 @@ decimal digits by default. May pass in a different precision for more or fewer
 fractional digits, or may set the C<$*ROOT-PRECISION> dynamic variable to have a
 different default.
 
+
+Also provides routines to calculate triangular roots in two, three, and four dimensions.
+
+A number whose triangular root is an integer is a triangular number.
+
+=head3 sub triangular-root( Real $number, Int $r? where 2|3|4 --> FatRat )
+
+=item1 $number
+=item2 value; any Real number, required.
+
+=item1 $r
+=item2 value; positive Integer 2, 3 or 4, optional, default 2 (r-simplex root).
+
+
+Also provides named routines for 3-simplex and 4-simplex roots if you want to
+call them directly.
+
+
+A number whose tetrahedral root is an integer is a tetrahedral number.
+
+=head3 sub tetrahedral-root( Real $number, Int 3 --> FatRat )
+
+=item1 $number
+=item2 value; any Real number, required.
+
+=item1 $r
+=item2 value; Integer 3, (3-simplex root).
+
+
+A number whose pentatopic root is an integer is a pentatopic number.
+( long o: pentatōpic - like hope or nope. )
+
+=head3 sub pentatopic-root( Real $number, Int 4 --> FatRat )
+
+=item1 $number
+=item2 value; any Real number, required.
+
+=item1 $r
+=item2 value; Integer 4, (4-simplex root).
+
 =head1 USAGE
 
-Raku nth root calculations return Nums by default. Very useful for small numbers
+Rakus nth root calculations return Nums by default. Very useful for small numbers
 but of limited value for very large ones. This module provides high accuracy
 root functions for both Integer and Rational results.
 
@@ -241,6 +304,12 @@ oriented; no separate general purpose routines. It doesn't provide specialized
 integer root functionality, you would need to calculate a rational root then
 truncate. And, in testing, I find it is about 33% slower on average than this
 module for Rational roots. Even slower for Integer roots.
+
+
+The triangular root routines are likely of little practical value, but I went
+through the trouble of implementation, so figured I may as well include them in
+the off-chance that someone may find them useful. There is no known general
+formula to solve for triangular roots for 5-simplex or higher r-simplex number.
 
 =head1 AUTHOR
 

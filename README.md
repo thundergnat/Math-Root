@@ -3,7 +3,7 @@
 NAME Math::Root
 ===============
 
-High accuracy and efficient nth root routines.
+High accuracy and fairly efficient nth root routines.
 
 SYNOPSIS
 ========
@@ -35,6 +35,11 @@ say root 2**541, 3; # cube root
 
 say (2**541).&root(7); # seventh root
 # 184212135128821202763601.0882008101068149236473074788038
+
+
+# Also can calculate 2nd, 3rd and 4th triangular roots
+say 7140.&triangular-root;
+# 119
 ```
 
 DESCRIPTION
@@ -72,10 +77,50 @@ Efficiently calculates the Integer nth root of an Integer. Returns an Integer. F
 
 Calculates the nth root of a Real number. Returns a FatRat, precise to 32 decimal digits by default. May pass in a different precision for more or fewer fractional digits, or may set the `$*ROOT-PRECISION` dynamic variable to have a different default.
 
+Also provides routines to calculate triangular roots in two, three, and four dimensions.
+
+A number whose triangular root is an integer is a triangular number.
+
+### sub triangular-root( Real $number, Int $r? where 2|3|4 --> FatRat )
+
+  * $number
+
+    * value; any Real number, required.
+
+  * $r
+
+    * value; positive Integer 2, 3 or 4, optional, default 2 (r-simplex root).
+
+Also provides named routines for 3-simplex and 4-simplex roots if you want to call them directly.
+
+A number whose tetrahedral root is an integer is a tetrahedral number.
+
+### sub tetrahedral-root( Real $number, Int 3 --> FatRat )
+
+  * $number
+
+    * value; any Real number, required.
+
+  * $r
+
+    * value; Integer 3, (3-simplex root).
+
+A number whose pentatopic root is an integer is a pentatopic number. ( long o: pentatōpic - like hope or nope. )
+
+### sub pentatopic-root( Real $number, Int 4 --> FatRat )
+
+  * $number
+
+    * value; any Real number, required.
+
+  * $r
+
+    * value; Integer 4, (4-simplex root).
+
 USAGE
 =====
 
-Raku nth root calculations return Nums by default. Very useful for small numbers but of limited value for very large ones. This module provides high accuracy root functions for both Integer and Rational results.
+Rakus nth root calculations return Nums by default. Very useful for small numbers but of limited value for very large ones. This module provides high accuracy root functions for both Integer and Rational results.
 
 Contrast the default Raku operations:
 
@@ -144,6 +189,8 @@ say root 2.123, 2, 49; # 1.4570518178843194456611350281256273442053818694
 ```
 
 At the time of this writing, there is another module in the ecosystem, `BigRoot`, that provides similar high accuracy root functionality. It works quite nicely but has several drawbacks for my purposes. It is strictly object oriented; no separate general purpose routines. It doesn't provide specialized integer root functionality, you would need to calculate a rational root then truncate. And, in testing, I find it is about 33% slower on average than this module for Rational roots. Even slower for Integer roots.
+
+The triangular root routines are likely of little practical value, but I went through the trouble of implementation, so figured I may as well include them in the off-chance that someone may find them useful. There is no known general formula to solve for triangular roots for 5-simplex or higher r-simplex number.
 
 AUTHOR
 ======
