@@ -89,7 +89,7 @@ sub pentatopic-root ($x) is export { ((5 + 4 × (24 × $x + 1).&root).&root - 3)
 =head1 NAME
 Math::Root
 
-High accuracy and fairly efficient nth root routines.
+High precision and fairly efficient nth root routines.
 
 =head1 SYNOPSIS
 
@@ -203,7 +203,7 @@ A number whose pentatopic root is an integer is a pentatopic number.
 =head1 USAGE
 
 Rakus nth root calculations return Nums by default. Very useful for small numbers
-but of limited value for very large ones. This module provides high accuracy
+but of limited value for very large ones. This module provides high precision
 root functions for both Integer and Rational results.
 
 Contrast the default Raku operations:
@@ -293,7 +293,7 @@ say root 2.123, 2, 49; # 1.4570518178843194456611350281256273442053818694
 =end code
 
 At the time of this writing, there is another module in the ecosystem,
-C<BigRoot>, that provides similar high accuracy root functionality. It works
+C<BigRoot>, that provides similar high precision root functionality. It works
 quite nicely but has several drawbacks for my purposes. It is strictly object
 oriented; no separate general purpose routines. It doesn't provide specialized
 integer root functionality, you would need to calculate a rational root then

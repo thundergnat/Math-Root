@@ -3,7 +3,7 @@
 NAME Math::Root
 ===============
 
-High accuracy and fairly efficient nth root routines.
+High precision and fairly efficient nth root routines.
 
 SYNOPSIS
 ========
@@ -112,7 +112,7 @@ A number whose pentatopic root is an integer is a pentatopic number. ( long o: p
 USAGE
 =====
 
-Rakus nth root calculations return Nums by default. Very useful for small numbers but of limited value for very large ones. This module provides high accuracy root functions for both Integer and Rational results.
+Rakus nth root calculations return Nums by default. Very useful for small numbers but of limited value for very large ones. This module provides high precision root functions for both Integer and Rational results.
 
 Contrast the default Raku operations:
 
@@ -180,7 +180,7 @@ say root 2.123, 2, 50; # 1.45705181788431944566113502812562734420538186940001
 say root 2.123, 2, 49; # 1.4570518178843194456611350281256273442053818694
 ```
 
-At the time of this writing, there is another module in the ecosystem, `BigRoot`, that provides similar high accuracy root functionality. It works quite nicely but has several drawbacks for my purposes. It is strictly object oriented; no separate general purpose routines. It doesn't provide specialized integer root functionality, you would need to calculate a rational root then truncate. And, in testing, I find it is about 33% slower on average than this module for Rational roots. Even slower for Integer roots.
+At the time of this writing, there is another module in the ecosystem, `BigRoot`, that provides similar high precision root functionality. It works quite nicely but has several drawbacks for my purposes. It is strictly object oriented; no separate general purpose routines. It doesn't provide specialized integer root functionality, you would need to calculate a rational root then truncate. And, in testing, I find it is about 33% slower on average than this module for Rational roots. Even slower for Integer roots.
 
 The triangular root routines are likely of little practical value, but I went through the trouble of implementation, so figured I may as well include them in the off-chance that someone may find them useful. There is no known general formula to solve for triangular roots for 5-simplex or higher r-simplex number.
 
